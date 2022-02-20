@@ -42,10 +42,6 @@ table {
     border-spacing: 0;
 }
 
-button {
-    border: none;
-}
-
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -79,6 +75,7 @@ img, picture {
 
 input, button, textarea, select {
     font: inherit;
+    border: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
