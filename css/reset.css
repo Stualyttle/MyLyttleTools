@@ -73,11 +73,6 @@ img, picture {
     display: block;
 }
 
-input, button, textarea, select {
-    font: inherit;
-    border: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
     html:focus-within {
         scroll-behavior: auto;
@@ -248,4 +243,11 @@ template {
 
 [hidden] {
     display: none;
+}
+
+input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+    border: none;
+    background: unset;
 }
