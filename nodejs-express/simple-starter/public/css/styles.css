@@ -1,0 +1,6 @@
+@import url("reset.css");
+@import url("defaults.css");
+
+:root {
+    --color-white-100: #fff;
+}
