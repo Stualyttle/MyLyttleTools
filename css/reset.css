@@ -394,10 +394,12 @@ template {
 input,
 button,
 textarea,
-select {
+select,
+::placeholder {
     font: inherit;
     color: inherit;
     border: none;
     outline: none;
     background: none;
+    opacity: 1;
 }
