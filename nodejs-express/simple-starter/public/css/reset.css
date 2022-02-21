@@ -1,13 +1,106 @@
 /*
- This is no official product, but a cleanup and merge of 3 css reset tools;
+ This is no official product,
+but a cleanup and merge of 3 css reset tools;
  all credits go to them and can be seen here below:
  * https://github.com/necolas/normalize.css/blob/master/normalize.css
  * https://piccalil.li/blog/a-modern-css-reset/
  * https://meyerweb.com/eric/tools/css/reset/
+
+---------------------------------------------------------------------------
+
+ Other changes made are mine,
+and that download can be found here:
+ * https://github.com/Stualyttle/LyttleTools/blob/main/css/reset.css
+
+ Custom changes:
+ * Formatting and reordering
+ * Buttons and etc now inherit color and do not have a border.
+
+---------------------------------------------------------------------------
  */
 
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -16,7 +109,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
     display: block;
 }
 
@@ -24,15 +127,20 @@ body {
     line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
     quotes: none;
 }
 
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: "";
     content: none;
 }
@@ -42,19 +150,27 @@ table {
     border-spacing: 0;
 }
 
-button {
-    border: none;
-}
-
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
     margin: 0;
 }
 
-ul[role="list"], ol[role="list"] {
+ul[role="list"],
+ol[role="list"] {
     list-style: none;
 }
 
@@ -72,13 +188,10 @@ a:not([class]) {
     text-decoration-skip-ink: auto;
 }
 
-img, picture {
+img,
+picture {
     max-width: 100%;
     display: block;
-}
-
-input, button, textarea, select {
-    font: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -86,7 +199,9 @@ input, button, textarea, select {
         scroll-behavior: auto;
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -119,7 +234,8 @@ hr {
 }
 
 pre {
-    font-family: monospace, monospace;
+    font-family: monospace,
+    monospace;
     font-size: 1em;
 }
 
@@ -133,12 +249,16 @@ abbr[title] {
     text-decoration: underline dotted;
 }
 
-b, strong {
+b,
+strong {
     font-weight: bolder;
 }
 
-code, kbd, samp {
-    font-family: monospace, monospace;
+code,
+kbd,
+samp {
+    font-family: monospace,
+    monospace;
     font-size: 1em;
 }
 
@@ -146,7 +266,8 @@ small {
     font-size: 80%;
 }
 
-sub, sup {
+sub,
+sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -165,31 +286,46 @@ img {
     border-style: none;
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
     font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
     margin: 0;
 }
 
-button, input {
+button,
+input {
     overflow: visible;
 }
 
-button, select {
+button,
+select {
     text-transform: none;
 }
 
-button, [type="button"], [type="reset"], [type="submit"] {
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
     -webkit-appearance: button;
 }
 
-button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
     border-style: none;
     padding: 0;
 }
 
-button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring {
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
     outline: 1px dotted ButtonText;
 }
 
@@ -214,12 +350,14 @@ textarea {
     overflow: auto;
 }
 
-[type="checkbox"], [type="radio"] {
+[type="checkbox"],
+[type="radio"] {
     box-sizing: border-box;
     padding: 0;
 }
 
-[type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
     height: auto;
 }
 
@@ -251,4 +389,17 @@ template {
 
 [hidden] {
     display: none;
+}
+
+input,
+button,
+textarea,
+select,
+::placeholder {
+    font: inherit;
+    color: inherit;
+    border: none;
+    outline: none;
+    background: none;
+    opacity: 1;
 }
