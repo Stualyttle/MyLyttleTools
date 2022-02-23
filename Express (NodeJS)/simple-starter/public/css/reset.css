@@ -1,14 +1,17 @@
 /************************************************/
 /*   Lyttle Reset; CSS reset the right way?!!   */
-/*                 Version: 2.0                 */
+/*                 Version: 2.1                 */
 /************************************************/
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     content: "";
     content: none;
+    /* word-wrap: break-word; */
 }
 
 html:focus-within {
@@ -177,7 +180,7 @@ ul,
 var,
 video {
     font: inherit;
-    font-size: 1rem;
+    font-size: 100%;
     margin: 0;
     padding: 0;
     vertical-align: baseline;
