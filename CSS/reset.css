@@ -1,24 +1,99 @@
-/*
- This is no official product,
-but a cleanup and merge of 3 css reset tools;
- all credits go to them and can be seen here below:
- * https://github.com/necolas/normalize.css/blob/master/normalize.css
- * https://piccalil.li/blog/a-modern-css-reset/
- * https://meyerweb.com/eric/tools/css/reset/
+/************************************************/
+/*   Lyttle Reset; CSS reset the right way?!!   */
+/*                 Version: 2.0                 */
+/************************************************/
 
----------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    content: "";
+    content: none;
+}
 
- Other changes made are mine,
-and that download can be found here:
- * https://github.com/Stualyttle/LyttleTools/blob/main/css/reset.css
+html:focus-within {
+    scroll-behavior: smooth;
+}
 
- Custom changes:
- * Formatting and reordering
- * Buttons and etc now inherit color and do not have a border.
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
 
----------------------------------------------------------------------------
- */
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+}
 
+body {
+    line-height: 1;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+}
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+button,
+[type="button"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+img,
+picture {
+    display: block;
+    max-width: 100%;
+    border-style: none;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+::placeholder {
+    font: inherit;
+    overflow: visible;
+    text-transform: none;
+    opacity: 1;
+    color: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+main,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ol,
+ul {
+    list-style: none;
+}
 
 html,
 body,
@@ -100,62 +175,7 @@ summary,
 time,
 mark,
 audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-body {
-    line-height: 1;
-}
-
-ol,
-ul {
-    list-style: none;
-}
-
-blockquote,
-q {
-    quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: "";
-    content: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
+video,
 body,
 h1,
 h2,
@@ -166,240 +186,10 @@ figure,
 blockquote,
 dl,
 dd {
-    margin: 0;
-}
-
-ul[role="list"],
-ol[role="list"] {
-    list-style: none;
-}
-
-html:focus-within {
-    scroll-behavior: smooth;
-}
-
-body {
-    min-height: 100vh;
-    text-rendering: optimizeSpeed;
-    line-height: 1.5;
-}
-
-a:not([class]) {
-    text-decoration-skip-ink: auto;
-}
-
-img,
-picture {
-    max-width: 100%;
-    display: block;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html:focus-within {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-html {
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-}
-
-body {
-    margin: 0;
-}
-
-main {
-    display: block;
-}
-
-h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
-}
-
-hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
-}
-
-pre {
-    font-family: monospace,
-    monospace;
-    font-size: 1em;
-}
-
-a {
-    background-color: transparent;
-}
-
-abbr[title] {
-    border-bottom: none;
-    text-decoration: underline;
-    text-decoration: underline dotted;
-}
-
-b,
-strong {
-    font-weight: bolder;
-}
-
-code,
-kbd,
-samp {
-    font-family: monospace,
-    monospace;
-    font-size: 1em;
-}
-
-small {
-    font-size: 80%;
-}
-
-sub,
-sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-
-sub {
-    bottom: -0.25em;
-}
-
-sup {
-    top: -0.5em;
-}
-
-img {
-    border-style: none;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-}
-
-button,
-input {
-    overflow: visible;
-}
-
-button,
-select {
-    text-transform: none;
-}
-
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-    -webkit-appearance: button;
-}
-
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
-}
-
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-    outline: 1px dotted ButtonText;
-}
-
-fieldset {
-    padding: 0.35em 0.75em 0.625em;
-}
-
-legend {
-    box-sizing: border-box;
-    color: inherit;
-    display: table;
-    max-width: 100%;
-    padding: 0;
-    white-space: normal;
-}
-
-progress {
-    vertical-align: baseline;
-}
-
-textarea {
-    overflow: auto;
-}
-
-[type="checkbox"],
-[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
-}
-
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-    height: auto;
-}
-
-[type="search"] {
-    -webkit-appearance: textfield;
-    outline-offset: -2px;
-}
-
-[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-    -webkit-appearance: button;
     font: inherit;
-}
-
-details {
-    display: block;
-}
-
-summary {
-    display: list-item;
-}
-
-template {
-    display: none;
-}
-
-[hidden] {
-    display: none;
-}
-
-input,
-button,
-textarea,
-select,
-::placeholder {
-    font: inherit;
-    color: inherit;
-    border: none;
-    outline: none;
-    background: none;
-    opacity: 1;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    border: 0;
 }
