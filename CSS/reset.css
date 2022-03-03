@@ -7,10 +7,10 @@
 *::before,
 *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     content: "";
     content: none;
+    margin: 0;
+    padding: 0;
     /* word-wrap: break-word; */
 }
 
@@ -22,10 +22,10 @@ html:focus-within {
     *,
     *::before,
     *::after {
-        transition-duration: .01ms !important;
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
     }
 
     html:focus-within {
@@ -57,9 +57,9 @@ button,
 
 img,
 picture {
+    border-style: none;
     display: block;
     max-width: 100%;
-    border-style: none;
 }
 
 button,
@@ -68,14 +68,14 @@ optgroup,
 select,
 textarea,
 ::placeholder {
+    background: none;
+    border: none;
+    color: inherit;
     font: inherit;
+    opacity: 1;
+    outline: none;
     overflow: visible;
     text-transform: none;
-    opacity: 1;
-    color: inherit;
-    border: none;
-    outline: none;
-    background: none;
 }
 
 article,
@@ -179,10 +179,12 @@ u,
 ul,
 var,
 video {
+    border: 0;
+    color: inherit;
     font: inherit;
     font-size: 100%;
     margin: 0;
     padding: 0;
+    text-decoration: inherit;
     vertical-align: baseline;
-    border: 0;
 }
