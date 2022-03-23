@@ -1,0 +1,35 @@
+/* v1.0.0
+Lyttle Grid ~ Recommended to use with Lyttle Reset:
+https://github.com/Stualyttle/LyttleTools/blob/main/CSS/reset.css
+*/
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr; /* key rule */
+    grid-template-columns: 15rem 1fr;
+    grid-template-areas:
+        "heading heading"
+        "side main";
+
+}
+
+.heading {
+    grid-area: heading;
+    background-color: yellow;
+}
+
+.main {
+    grid-area: main;
+    overflow-y: scroll;
+    background-color: red;
+}
+
+.side {
+    background-color: green;
+    grid-area: side;
+}

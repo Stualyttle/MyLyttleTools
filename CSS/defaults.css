@@ -1,3 +1,10 @@
+/* v1.0.2
+Lyttle Defaults ~ Recommended to use with Lyttle Reset:
+https://github.com/Stualyttle/LyttleTools/blob/main/CSS/reset.css
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+
 * {
     box-sizing: border-box;
     margin: 0;
