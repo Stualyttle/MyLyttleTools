@@ -1,4 +1,4 @@
-/* v1.0.2 - React version
+/* v1.0.2 / V1.2.0 (defaults version / react defaults version)
 Lyttle Defaults ~ Recommended to use with Lyttle Reset:
 https://github.com/Stualyttle/LyttleTools/blob/main/CSS/react-supported/reset.css
 */
@@ -13,11 +13,6 @@ https://github.com/Stualyttle/LyttleTools/blob/main/CSS/react-supported/reset.cs
 body {
     line-height: 1;
     font-family: Helvetica, Arial, sans-serif;
-}
-
-#root > * {
-    display: flex;
-    flex-direction: column
 }
 
 main {
