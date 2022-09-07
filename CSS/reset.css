@@ -1,4 +1,4 @@
-/* v2.1.3
+/* v2.2.0
 Lyttle Reset ~ Recommended to use with Lyttle Defaults:
 https://github.com/Stualyttle/LyttleTools/blob/main/CSS/defaults.css
 */
@@ -6,7 +6,8 @@ https://github.com/Stualyttle/LyttleTools/blob/main/CSS/defaults.css
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     content: "";
     content: none;
     margin: 0;
@@ -22,10 +23,14 @@ html:focus-within {
     *,
     *::before,
     *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
+        -webkit-animation-duration: .01ms !important;
+                animation-duration: .01ms !important;
+        -webkit-animation-iteration-count: 1 !important;
+                animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
+        -webkit-transition-duration: .01ms !important;
+             -o-transition-duration: .01ms !important;
+                transition-duration: .01ms !important;
     }
 
     html:focus-within {
@@ -63,6 +68,46 @@ picture {
     max-height: 100%;
 }
 
+::-webkit-input-placeholder {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    opacity: 1;
+    overflow: visible;
+    text-transform: inherit;
+}
+
+::-moz-placeholder {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    opacity: 1;
+    overflow: visible;
+    text-transform: inherit;
+}
+
+:-ms-input-placeholder {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    opacity: 1;
+    overflow: visible;
+    text-transform: inherit;
+}
+
+::-ms-input-placeholder {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    opacity: 1;
+    overflow: visible;
+    text-transform: inherit;
+}
+
 button,
 input,
 optgroup,
@@ -74,7 +119,6 @@ textarea,
     color: inherit;
     font: inherit;
     opacity: 1;
-    outline: none;
     overflow: visible;
     text-transform: inherit;
 }
