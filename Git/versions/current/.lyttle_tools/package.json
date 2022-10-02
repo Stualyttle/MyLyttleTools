@@ -1,0 +1,18 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": [
+    "front-office",
+    "back-office",
+    "backend"
+  ],
+  "scripts": {
+    "start": "npm run install",
+    "install": "npm run install:version && npm run install:breaking",
+    "install:version": "cd ../../.. && node ./.lyttle_tools/src/automations/version-manager/install.js && chmod ug+x ./.git/hooks/*",
+    "install:breaking": "cd ../../.. && node ./.lyttle_tools/src/automations/breaking/accept.js"
+  }
+}
