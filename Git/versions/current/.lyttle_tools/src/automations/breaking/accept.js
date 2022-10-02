@@ -1,4 +1,9 @@
 const fs = require("fs");
+const dir = './node_modules';
+
+if (!fs.existsSync(dir)){
+  fs.mkdirSync(dir);
+}
 
 const newVersion = fs.readFileSync(
   "./.lyttle_tools/config/breaking.config.json",
