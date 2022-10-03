@@ -1,5 +1,6 @@
 # Quickest install:
-## `curl -sSL https://install-git.lyttle.it | bash`
+## MacOS/Linux: `curl -sSL https://install-git.lyttle.it | bash`
+## Windows: `curl https://install-git.lyttle.it | bash`
 
 # Original install
 - Download Zip from versions
