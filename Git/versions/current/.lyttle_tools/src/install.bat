@@ -1,3 +1,4 @@
+@echo off
 title Installing LyttleTools Git...
 :: check if git exists
 if exist ./.git (
