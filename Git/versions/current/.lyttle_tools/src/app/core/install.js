@@ -153,7 +153,7 @@ async function installer() {
         "\x1b[0m"
     );
   } catch (e) {
-    console.log(e);
+    console.log("myERR", e);
     console.log(
       "\x1b[31m" +
         "❌   Something went horribly wrong, please contract the developer!" +
