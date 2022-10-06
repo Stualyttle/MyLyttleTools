@@ -23,7 +23,7 @@ const check = async () => {
       }
       const pressed = key.toString().toLowerCase();
       if (["y", "n"].includes(pressed)) {
-        process.stdin.setRawMode(false);
+        if (process.stdin.isTTY) process.stdin.setRawMode(false);
         process.stdin.off("data", keyListener);
         process.stdin.pause();
         resolve(pressed === "y");
@@ -31,7 +31,7 @@ const check = async () => {
     }
 
     process.stdin.resume();
-    process.stdin.setRawMode(true);
+    if (process.stdin.isTTY) process.stdin.setRawMode(true);
     process.stdin.on("data", keyListener);
   });
 };
