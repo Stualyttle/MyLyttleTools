@@ -158,6 +158,7 @@ async function installer() {
         "❌   Something went horribly wrong, please contract the developer!" +
         "\x1b[0m"
     );
+    console.log(e);
   }
 }
 
