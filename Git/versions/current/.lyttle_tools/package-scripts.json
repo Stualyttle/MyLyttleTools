@@ -1,9 +1,9 @@
 {
   "info": "Add these scripts to your project package.json one folder higher than this one (./.lyttle_tools/package-scripts.json -> ./package.json)",
   "scripts": {
-    "start": "npm run tools:breaking:check && npm run your-start-command-or-script",
-    "tools:version:update": "node ./.lyttle_tools/src/automations/version-manager/version.js && chmod ug+x ./.git/hooks/*",
-    "tools:breaking:check": "node ./.lyttle_tools/src/automations/breaking/check.js",
-    "tools:breaking:accept": "node ./.lyttle_tools/src/automations/breaking/accept.js"
+    "start": "npm run tools && npm run your-start-command-or-script",
+    "tools": "node ./.lyttle_tools/src/app/core/app.js",
+    "tools:version:update": "node ./.lyttle_tools/src/app/version-manager/version.js && chmod ug+x ./.git/hooks/*",
+    "tools:breaking:accept": "node ./.lyttle_tools/src/app/breaking/accept.js"
   }
 }

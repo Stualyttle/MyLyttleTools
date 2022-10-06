@@ -1,18 +1,11 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.js",
-  "license": "MIT",
-  "workspaces": [
-    "front-office",
-    "back-office",
-    "backend"
-  ],
   "scripts": {
     "start": "npm run install",
-    "install": "npm run install:breaking && npm run install:version",
-    "install:version": "cd ../ && node ./.lyttle_tools/src/automations/version-manager/install.js && chmod ug+x ./.git/hooks/*",
-    "install:breaking": "cd ../ && node ./.lyttle_tools/src/automations/breaking/accept.js"
+    "install": "node ./src/app/core/install.js",
+    "install:version": "cd ../ && node ./.lyttle_tools/src/app/version-manager/install.js && chmod ug+x ./.git/hooks/*",
+    "install:breaking": "cd ../ && node ./.lyttle_tools/src/app/breaking/accept.js",
+    "tools:version:update": "node ./.lyttle_tools/src/app/version-manager/version.js && chmod ug+x ./.git/hooks/*",
+    "tools:breaking:check": "node ./.lyttle_tools/src/app/breaking/check.js",
+    "tools:breaking:accept": "node ./.lyttle_tools/src/app/breaking/accept.js"
   }
 }
