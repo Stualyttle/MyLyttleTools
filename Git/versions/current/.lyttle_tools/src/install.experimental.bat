@@ -9,9 +9,9 @@ if exist ./.git (
     :: Remove zip
     del .\experimental.zip
     :: Go to .lyttle_tools
-    cd ./.lyttle_tools || (echo "Error: Could not find .lyttle_tools" && exit 1)
+    :: cd ./.lyttle_tools || (echo "Error: Could not find .lyttle_tools" && exit 1)
     :: Run install & delete script
-    npm run install && del ..\install.experimental.bat
+    cd ./.lyttle_tools && npm run install
 ) else (
   :: Not found, Mention it
   echo "No repository found! Is this the root? Is .git in this folder?"
