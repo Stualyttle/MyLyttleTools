@@ -68,6 +68,16 @@ fs.readFile(
           "utf8",
           () => {}
         );
+
+        fs.cp(
+          rootDir + "/.lyttle_tools/src/assets/git-hooks",
+          "./.git/hooks",
+          { recursive: true },
+          (err) => {
+            if (err)
+              throw new Error("Version import to .git/hooks failed!" + err);
+          }
+        );
       } else if (cloudVersion < appVersion) {
         console.log(
           "\x1b[33m" +
