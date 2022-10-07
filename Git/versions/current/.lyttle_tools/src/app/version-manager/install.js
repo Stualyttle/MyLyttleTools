@@ -1,10 +1,8 @@
 import fs from "fs";
 
-fs.cp(
+fs.writeFileSync(
   "./.lyttle_tools/src/assets/version-manager/version.txt",
-  "./version.txt",
-  { recursive: true },
-  (err) => {
-    if (err) throw new Error("Version import to .git/hooks failed!" + err);
-  }
+  "0.0.0.0: "
 );
+
+console.log("Version Installed");

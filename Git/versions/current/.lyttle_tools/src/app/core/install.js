@@ -145,6 +145,7 @@ async function installer() {
     console.log("\x1b[35m" + "[1/2]", "\x1b[0m" + "Version installing...");
     runCommand("npm run --silent install:version");
     runCommand("npm run --silent tools:version:update");
+
     console.log("\x1b[35m" + "[2/2]", "\x1b[0m" + "Breaking installing...");
     runCommand("npm run --silent install:breaking");
     console.log(
