@@ -65,7 +65,7 @@ fs.readFile(
 
         config.ref = cloudVersion;
         fs.writeFile(
-          "config/app.config.json",
+          rootDir + "/.lyttle_tools/config/app.config.json",
           JSON.stringify(config, null, 2),
           "utf8",
           () => {}
