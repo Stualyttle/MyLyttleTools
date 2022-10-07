@@ -4,7 +4,7 @@ if [ -d "./.git" ] && [ ! -h "./.git" ]; then
     # Download latest
     curl -sSLO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/experimental.zip
     # Unzip
-    tar -zxf ./experimental.zip
+    tar -zxf ./experimental.zip > /dev/null
     # Remove zip
     rm ./experimental.zip
     # Go to .lyttle_tools
