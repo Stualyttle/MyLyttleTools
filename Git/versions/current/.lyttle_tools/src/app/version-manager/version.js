@@ -24,11 +24,13 @@ fs.readFile(
     }
 
     if (config.autoUpdate) {
-      const [res, success] = runCommand(
+      const [rawCloudVersion, success] = runCommand(
         "curl -L https://raw.githubusercontent.com/Stualyttle/LyttleTools/main/Git/versions/latest.txt"
       );
 
-      const cloudVersion = parseInt(res.toString().replaceAll("_", ""));
+      const cloudVersion = parseInt(
+        rawCloudVersion.toString().replaceAll("_", "")
+      );
       const appVersion = parseInt(config.ref.toString().replaceAll("_", ""));
 
       if (cloudVersion !== appVersion && cloudVersion > appVersion) {
@@ -66,20 +68,21 @@ fs.readFile(
         config.ref = cloudVersion;
         fs.writeFile(
           rootDir + "/.lyttle_tools/config/app.config.json",
-          JSON.stringify(config, null, 2),
+          JSON.stringify(rawCloudVersion.toString(), null, 2),
           "utf8",
           () => {}
         );
 
-        fs.cp(
-          rootDir + "/.lyttle_tools/src/assets/git-hooks",
-          "./.git/hooks",
-          { recursive: true },
-          (err) => {
-            if (err)
-              throw new Error("Version import to .git/hooks failed!" + err);
-          }
-        );
+        if (!isHook)
+          fs.cp(
+            rootDir + "/.lyttle_tools/src/assets/git-hooks",
+            "./.git/hooks",
+            { recursive: true },
+            (err) => {
+              if (err)
+                throw new Error("Version import to .git/hooks failed!" + err);
+            }
+          );
       } else if (cloudVersion < appVersion) {
         console.log(
           "\x1b[33m" +
