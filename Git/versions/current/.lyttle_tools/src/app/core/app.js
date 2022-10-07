@@ -64,10 +64,10 @@ fs.readFile(
             "curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null"
           );
 
-        config.ref = cloudVersion;
+        config.ref = rawCloudVersion.toString();
         fs.writeFile(
           rootDir + "/.lyttle_tools/config/app.config.json",
-          JSON.stringify(rawCloudVersion.toString(), null, 2),
+          JSON.stringify(config, null, 2),
           "utf8",
           () => {}
         );
