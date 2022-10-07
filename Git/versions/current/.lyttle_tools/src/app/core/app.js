@@ -2,7 +2,8 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const os = require("os");
 const { join } = require("path");
-const rootDir = join(__dirname);
+
+const rootDir = join(__dirname + "/..", "/..", "/..", "/..");
 
 fs.readFile(
   rootDir + "/.lyttle_tools/config/app.config.json",
@@ -60,14 +61,6 @@ fs.readFile(
             "curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null"
           );
 
-        config.ref = cloudVersion;
-        fs.writeFile(
-          "config/app.config.json",
-          JSON.stringify(config, null, 2),
-          "utf8",
-          () => {}
-        );
-
         fs.cp(
           rootDir + "/.lyttle_tools/src/assets/git-hooks",
           "./.git/hooks",
@@ -77,6 +70,16 @@ fs.readFile(
               throw new Error("Version import to .git/hooks failed!" + err);
           }
         );
+
+        setTimeout(() => {
+          config.ref = cloudVersion;
+          fs.writeFile(
+            "config/app.config.json",
+            JSON.stringify(config, null, 2),
+            "utf8",
+            () => {}
+          );
+        }, 5000);
       } else if (cloudVersion < appVersion) {
         console.log(
           "\x1b[33m" +
