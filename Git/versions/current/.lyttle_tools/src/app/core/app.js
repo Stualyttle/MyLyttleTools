@@ -61,25 +61,13 @@ fs.readFile(
             "curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null"
           );
 
-        fs.cp(
-          rootDir + "/.lyttle_tools/src/assets/git-hooks",
-          "./.git/hooks",
-          { recursive: true },
-          (err) => {
-            if (err)
-              throw new Error("Version import to .git/hooks failed!" + err);
-          }
+        config.ref = cloudVersion;
+        fs.writeFile(
+          "config/app.config.json",
+          JSON.stringify(config, null, 2),
+          "utf8",
+          () => {}
         );
-
-        setTimeout(() => {
-          config.ref = cloudVersion;
-          fs.writeFile(
-            "config/app.config.json",
-            JSON.stringify(config, null, 2),
-            "utf8",
-            () => {}
-          );
-        }, 5000);
       } else if (cloudVersion < appVersion) {
         console.log(
           "\x1b[33m" +
