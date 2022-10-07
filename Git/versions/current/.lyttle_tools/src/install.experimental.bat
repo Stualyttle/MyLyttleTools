@@ -5,7 +5,7 @@ if exist ./.git (
     :: Download latest
     curl -sSLO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/experimental.zip
     :: Unzip
-    tar -zxf ./experimental.zip | powershell -command "Expand-Archive -Force ./experimental.zip ./"
+    tar -xf ./experimental.zip | powershell -command "Expand-Archive -Force ./experimental.zip ./"
     :: Remove zip
     del .\experimental.zip
     :: Go to .lyttle_tools
