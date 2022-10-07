@@ -33,11 +33,20 @@ fs.readFile(
 
       if (cloudVersion !== appVersion && cloudVersion > appVersion) {
         const versionBuilder = (n, i) => {
-          if (n == 0) return "";
-          if ([0, 3].includes(i)) return n + ".";
+          if (n == 0 && ![0, 3, 6].includes(i)) return "";
+          if (i === 6) return n;
+          return n + ".";
         };
-        const appVer = appVersion.split("").map(versionBuilder);
-        const cloudVer = cloudVersion.split("").map(versionBuilder);
+        const appVer = appVersion
+          .toString()
+          .split("")
+          .map(versionBuilder)
+          .join("");
+        const cloudVer = cloudVersion
+          .toString()
+          .split("")
+          .map(versionBuilder)
+          .join("");
         const isWin = os.platform() === "win32";
         console.log(
           "\x1b[36m" +
@@ -60,6 +69,16 @@ fs.readFile(
           JSON.stringify(config, null, 2),
           "utf8",
           () => {}
+        );
+
+        fs.cp(
+          rootDir + "/.lyttle_tools/src/assets/git-hooks",
+          "./.git/hooks",
+          { recursive: true },
+          (err) => {
+            if (err)
+              throw new Error("Version import to .git/hooks failed!" + err);
+          }
         );
       } else if (cloudVersion < appVersion) {
         console.log(
