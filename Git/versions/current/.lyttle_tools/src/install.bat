@@ -3,15 +3,11 @@ title Installing LyttleTools Git...
 :: check if git exists
 if exist ./.git (
     :: Download latest
-    curl -LO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/latest.zip
+    curl -sSLO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/experimental.zip > nul
     :: Unzip
-    tar -xf ./latest.zip | powershell -command "Expand-Archive -Force ./latest.zip ./"
+    tar -zxf ./experimental.zip > nul | powershell -command "Expand-Archive -Force ./experimental.zip ./" > nul
     :: Remove zip
-    del .\latest.zip
-    :: Go to .lyttle_tools
-    cd ./.lyttle_tools || (echo "Error: Could not find .lyttle_tools" && exit 1)
-    :: Run install & delete script
-    npm run install & del ..\install.bat
+    del .\experimental.zip > nul
 ) else (
   :: Not found, Mention it
   echo "No repository found! Is this the root? Is .git in this folder?"

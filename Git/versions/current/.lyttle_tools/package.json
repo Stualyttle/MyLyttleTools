@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npm run install",
+    "start": "npm -s run install",
     "install": "node ./src/app/core/install.js",
     "install:version": "cd ../ && node ./.lyttle_tools/src/app/version-manager/install.js && chmod ug+x ./.git/hooks/*",
     "install:breaking": "cd ../ && node ./.lyttle_tools/src/app/breaking/accept.js",
