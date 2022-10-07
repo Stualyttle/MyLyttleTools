@@ -4,8 +4,8 @@
     "install": "node ./src/app/core/install.js",
     "install:version": "cd ../ && node ./.lyttle_tools/src/app/version-manager/install.js && chmod ug+x ./.git/hooks/*",
     "install:breaking": "cd ../ && node ./.lyttle_tools/src/app/breaking/accept.js",
-    "tools:version:update": "node ./.lyttle_tools/src/app/version-manager/version.js && chmod ug+x ./.git/hooks/*",
-    "tools:breaking:check": "node ./.lyttle_tools/src/app/breaking/check.js",
-    "tools:breaking:accept": "node ./.lyttle_tools/src/app/breaking/accept.js"
+    "tools:version:update": "cd ../ && node ./.lyttle_tools/src/app/version-manager/version.js && chmod ug+x ./.git/hooks/*",
+    "tools:breaking:check": "cd ../ && node ./.lyttle_tools/src/app/breaking/check.js",
+    "tools:breaking:accept": "cd ../ && node ./.lyttle_tools/src/app/breaking/accept.js"
   }
 }
