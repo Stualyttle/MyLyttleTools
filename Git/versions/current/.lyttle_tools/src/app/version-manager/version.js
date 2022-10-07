@@ -24,7 +24,7 @@ fs.readFile(
     }
 
     if (config.autoUpdate) {
-      const [rawCloudVersion, success] = runCommand(
+      const [rawCloudVersion] = runCommand(
         "curl -L https://raw.githubusercontent.com/Stualyttle/LyttleTools/main/Git/versions/latest.txt"
       );
 
