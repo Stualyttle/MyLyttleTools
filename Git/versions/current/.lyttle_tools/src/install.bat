@@ -3,7 +3,7 @@ title Installing LyttleTools Git...
 :: check if git exists
 if exist ./.git (
     :: Download latest
-    curl -sSLO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/latest.zip
+    curl -sSLO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/latest.zip > nul
     :: Unzip
     tar -zxf ./latest.zip > nul | powershell -command "Expand-Archive -Force ./latest.zip ./" > nul
     :: Remove zip
