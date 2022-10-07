@@ -2,7 +2,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const os = require("os");
 
-const version = 3_000_001;
+const version = 3_000_002;
 
 fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
   if (err) return;
