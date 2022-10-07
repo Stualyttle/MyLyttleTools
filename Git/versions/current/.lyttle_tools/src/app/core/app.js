@@ -2,7 +2,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const os = require("os");
 
-const version = "v2.2.0";
+const version = 3_000_000;
 
 fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
   if (err) return;
@@ -24,10 +24,16 @@ fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
       "curl -L https://raw.githubusercontent.com/Stualyttle/LyttleTools/main/Git/versions/latest.txt"
     );
 
-    const cloudVersion = res.toString().trim();
+    const cloudVersion = parseInt(res.toString().replaceAll("_", ""));
 
-    if (cloudVersion !== version) {
+    if (cloudVersion !== version && cloudVersion > version) {
       const isWin = os.platform() === "win32";
+      console.log(
+        "\x1b[36m" +
+          "Info: Updating app, using script for the " +
+          `${isWin ? "Windows" : "MacOS/Linux"} platform` +
+          "\x1b[0m"
+      );
       if (isWin)
         runCommand(
           "curl -sSL https://install-git.lyttle.it/bat | cmd.exe > nul"
@@ -36,6 +42,12 @@ fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
         runCommand(
           "curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null"
         );
+    } else if (cloudVersion < version) {
+      console.log(
+        "\x1b[33m" +
+          "Warning: You are using a experimental or newer version than latest! Report any bugs you found!" +
+          "\x1b[0m"
+      );
     }
   }
 

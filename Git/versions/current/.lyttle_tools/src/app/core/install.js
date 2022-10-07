@@ -51,7 +51,7 @@ const yesAndNo =
 async function installer() {
   try {
     console.log(
-      `Welcome to Lyttle Tools!\n\n` +
+      `\nWelcome to Lyttle Tools!\n\n` +
         `This is a tool to help you manage your projects.\n` +
         `Lets go thru the installation config together!\n`
     );
