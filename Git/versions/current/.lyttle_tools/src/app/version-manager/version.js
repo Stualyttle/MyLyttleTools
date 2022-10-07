@@ -1,74 +1,173 @@
 // Import filesystem
 const fs = require("fs");
+const { execSync } = require("child_process");
+const fs = require("fs");
+const os = require("os");
 
-// Get version in saved file
-fs.readFile("./version.txt", "utf8", (err, data) => {
-  // If error, throw error
-  if (err) throw new Error("Pre-commit hook failed");
+fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
+  if (err) return;
+  const config = JSON.parse(content);
 
-  function updateVersion(newTxtVersion) {
-    // Change version in saved file
-    fs.writeFileSync("./version.txt", newTxtVersion);
+  function runCommand(command) {
+    try {
+      const res = execSync(command, { stdio: "pipe" });
+      return [res, true];
+    } catch (_) {
+      return [null, false];
+    }
+  }
 
-    // Notify user
-    console.log(
-      "Updated from",
-      "\x1b[31m" + data.split(":")[0],
-      "\x1b[0m" + "to",
-      "\x1b[32m" + newTxtVersion.split(":")[0] + "\x1b[0m" + "!"
+  if (config.autoUpdate) {
+    const [res, success] = runCommand(
+      "curl -L https://raw.githubusercontent.com/Stualyttle/LyttleTools/main/Git/versions/latest.txt"
     );
+
+    const cloudVersion = parseInt(res.toString().replaceAll("_", ""));
+    const appVersion = parseInt(config.ref.toString().replaceAll("_", ""));
+
+    if (cloudVersion !== appVersion && cloudVersion > appVersion) {
+      const versionBuilder = (n, i) => {
+        if (n == 0) return "";
+        if ([0, 3].includes(i)) return n + ".";
+      };
+      const appVer = appVersion.split("").map(versionBuilder);
+      const cloudVer = cloudVersion.split("").map(versionBuilder);
+      const isWin = os.platform() === "win32";
+      console.log(
+        "\x1b[36m" +
+          `Info: Updating tools from ${appVer} to ${cloudVer}, using script for the ` +
+          `${isWin ? "Windows" : "MacOS/Linux"} platform` +
+          "\x1b[0m"
+      );
+      if (isWin)
+        runCommand(
+          "curl -sSL https://install-git.lyttle.it/bat | cmd.exe > nul"
+        );
+      else
+        runCommand(
+          "curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null"
+        );
+
+      config.ref = cloudVersion;
+      fs.writeFile(
+        "config/app.config.json",
+        JSON.stringify(config, null, 2),
+        "utf8",
+        () => {}
+      );
+    } else if (cloudVersion < appVersion) {
+      console.log(
+        "\x1b[33m" +
+          "Warning: You are using a experimental or newer version than latest! Report any bugs you found!" +
+          "\x1b[0m"
+      );
+    }
   }
 
-  // Split up version to update it.
-  const version = data.split(":")[0];
-  const v = version.split(".");
-
-  // Desctructure version
-  let [major, minor, patch, revision] = v;
-  revision++;
-
-  // Check version: Get day
-  const today = new Date();
-
-  // Get year
-  const year = String(today.getFullYear()).slice(-2);
-
-  // Create new date for week calculation.
-  const tempToday = new Date(
-    Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())
+  const [_, breakingCheck] = runCommand(
+    "node ./.lyttle_tools/src/app/breaking/check.js"
   );
-  // Make Sunday's day number 7
-  tempToday.setUTCDate(
-    tempToday.getUTCDate() + 4 - (tempToday.getUTCDay() || 7)
-  );
-  // Get first day of year
-  const yearStart = new Date(Date.UTC(tempToday.getUTCFullYear(), 0, 1));
-  // Calculate full weeks to the nearest Sunday
-  const week = String(Math.ceil(((tempToday - yearStart) / 86400000 + 1) / 7));
-  // Return array of year and week number
-
-  // Get day
-  const days = [7, 1, 2, 3, 4, 5, 6];
-  const day = String(days[today.getDay()]);
-
-  if (year !== major || week !== minor || day !== patch) {
-    // Setup version
-    const ver = `${year}.${week}.${day}.1: `;
-    updateVersion(ver);
-    throw new Error("Invalid version, try again!");
+  if (!breakingCheck) {
+    console.log(
+      "\x1b[31m" +
+        '‼   Breaking changes detected! Please delete "./node_modules" & "./dist", run "npm i" and then "npm run tools:breaking:accept"' +
+        "\x1b[0m"
+    );
+    process.exit(1);
   }
 
-  // Update version
-  const newVersion = `${major}.${minor}.${patch}.${revision}: `;
-  updateVersion(newVersion);
+  const [nodeCheck] = runCommand("node -v");
+  const yourNodeVer = nodeCheck.toString().trim();
+  if (config.lockNode && yourNodeVer !== config.nodeVersion) {
+    console.log(
+      "\x1b[31m" +
+        "‼   You are using a wrong nodejs version, You are currently using " +
+        "\x1b[33m" +
+        yourNodeVer +
+        "\x1b[31m" +
+        " but you should be using " +
+        "\x1b[32m" +
+        config.nodeVersion +
+        "\x1b[31m" +
+        "." +
+        "\x1b[0m"
+    );
+    process.exit(1);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+
+  // Get version in saved file
+  fs.readFile("./version.txt", "utf8", (err, data) => {
+    // If error, throw error
+    if (err) throw new Error("Pre-commit hook failed");
+
+    function updateVersion(newTxtVersion) {
+      // Change version in saved file
+      fs.writeFileSync("./version.txt", newTxtVersion);
+
+      // Notify user
+      console.log(
+        "Updated from",
+        "\x1b[31m" + data.split(":")[0],
+        "\x1b[0m" + "to",
+        "\x1b[32m" + newTxtVersion.split(":")[0] + "\x1b[0m" + "!"
+      );
+    }
+
+    // Split up version to update it.
+    const version = data.split(":")[0];
+    const v = version.split(".");
+
+    // Desctructure version
+    let [major, minor, patch, revision] = v;
+    revision++;
+
+    // Check version: Get day
+    const today = new Date();
+
+    // Get year
+    const year = String(today.getFullYear()).slice(-2);
+
+    // Create new date for week calculation.
+    const tempToday = new Date(
+      Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())
+    );
+    // Make Sunday's day number 7
+    tempToday.setUTCDate(
+      tempToday.getUTCDate() + 4 - (tempToday.getUTCDay() || 7)
+    );
+    // Get first day of year
+    const yearStart = new Date(Date.UTC(tempToday.getUTCFullYear(), 0, 1));
+    // Calculate full weeks to the nearest Sunday
+    const week = String(
+      Math.ceil(((tempToday - yearStart) / 86400000 + 1) / 7)
+    );
+    // Return array of year and week number
+
+    // Get day
+    const days = [7, 1, 2, 3, 4, 5, 6];
+    const day = String(days[today.getDay()]);
+
+    if (year !== major || week !== minor || day !== patch) {
+      // Setup version
+      const ver = `${year}.${week}.${day}.1: `;
+      updateVersion(ver);
+      throw new Error("Invalid version, try again!");
+    }
+
+    // Update version
+    const newVersion = `${major}.${minor}.${patch}.${revision}: `;
+    updateVersion(newVersion);
+  });
+
+  // Don't put this in git hooks, only for npm scripts.
+  fs.cp(
+    "./.lyttle_tools/src/assets/git-hooks",
+    "./.git/hooks",
+    { recursive: true },
+    (err) => {
+      if (err) throw new Error("Version import to .git/hooks failed!" + err);
+    }
+  );
 });
-
-// Don't put this in git hooks, only for npm scripts.
-fs.cp(
-  "./.lyttle_tools/src/assets/git-hooks",
-  "./.git/hooks",
-  { recursive: true },
-  (err) => {
-    if (err) throw new Error("Version import to .git/hooks failed!" + err);
-  }
-);

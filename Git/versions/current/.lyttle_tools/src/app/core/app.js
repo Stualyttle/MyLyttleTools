@@ -2,13 +2,9 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const os = require("os");
 
-const version = 3_000_002;
-
 fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
   if (err) return;
   const config = JSON.parse(content);
-
-  // console.log(config);
 
   function runCommand(command) {
     try {
@@ -25,12 +21,19 @@ fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
     );
 
     const cloudVersion = parseInt(res.toString().replaceAll("_", ""));
+    const appVersion = parseInt(config.ref.toString().replaceAll("_", ""));
 
-    if (cloudVersion !== version && cloudVersion > version) {
+    if (cloudVersion !== appVersion && cloudVersion > appVersion) {
+      const versionBuilder = (n, i) => {
+        if (n == 0) return "";
+        if ([0, 3].includes(i)) return n + ".";
+      };
+      const appVer = appVersion.split("").map(versionBuilder);
+      const cloudVer = cloudVersion.split("").map(versionBuilder);
       const isWin = os.platform() === "win32";
       console.log(
         "\x1b[36m" +
-          "Info: Updating app, using script for the " +
+          `Info: Updating tools from ${appVer} to ${cloudVer}, using script for the ` +
           `${isWin ? "Windows" : "MacOS/Linux"} platform` +
           "\x1b[0m"
       );
@@ -42,7 +45,15 @@ fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
         runCommand(
           "curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null"
         );
-    } else if (cloudVersion < version) {
+
+      config.ref = cloudVersion;
+      fs.writeFile(
+        "config/app.config.json",
+        JSON.stringify(config, null, 2),
+        "utf8",
+        () => {}
+      );
+    } else if (cloudVersion < appVersion) {
       console.log(
         "\x1b[33m" +
           "Warning: You are using a experimental or newer version than latest! Report any bugs you found!" +
