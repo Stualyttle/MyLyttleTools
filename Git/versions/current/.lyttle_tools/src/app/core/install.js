@@ -48,7 +48,7 @@ const yesAndNo =
   "\x1b[0m" +
   ")";
 
-fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
+fs.readFile("./config/app.config.json", (err, content) => {
   async function installer() {
     try {
       if (err) return;
