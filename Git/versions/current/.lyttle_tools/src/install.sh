@@ -2,7 +2,7 @@
 # Check if .git exists
 if [ -d "./.git" ] && [ ! -h "./.git" ]; then
     # Download latest
-    curl -sSLO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/latest.zip > /dev/null
+    curl -sSLO https://github.com/Stualyttle/LyttleTools/raw/main/Git/versions/latest.zip
     # Unzip
     tar -zxf ./latest.zip > /dev/null
     # Remove zip
