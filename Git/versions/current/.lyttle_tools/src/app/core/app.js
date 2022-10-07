@@ -2,6 +2,8 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const os = require("os");
 
+const version = "v2.2.0";
+
 fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
   if (err) return;
   const config = JSON.parse(content);
@@ -18,13 +20,23 @@ fs.readFile("./.lyttle_tools/config/app.config.json", (err, content) => {
   }
 
   if (config.autoUpdate) {
-    runCommand(
-      "cd ./.lyttle_tools/config && curl -LO https://raw.githubusercontent.com/Stualyttle/LyttleTools/main/Git/versions/latest.txt"
+    const [res, success] = runCommand(
+      "curl -L https://raw.githubusercontent.com/Stualyttle/LyttleTools/main/Git/versions/latest.txt"
     );
 
-    const isWin = os.platform() === "win32";
-    if (isWin) runCommand('curl -sSL https://install-git.lyttle.it/bat | cmd.exe > nul')
-    else runCommand('curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null')
+    const cloudVersion = res.toString().trim();
+
+    if (cloudVersion !== version) {
+      const isWin = os.platform() === "win32";
+      if (isWin)
+        runCommand(
+          "curl -sSL https://install-git.lyttle.it/bat | cmd.exe > nul"
+        );
+      else
+        runCommand(
+          "curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null"
+        );
+    }
   }
 
   const [_, breakingCheck] = runCommand(
