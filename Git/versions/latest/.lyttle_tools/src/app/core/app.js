@@ -92,7 +92,7 @@ fs.readFile(
     }
 
     const [_, breakingCheck] = runCommand(
-      `node ${rootDir}/.lyttle_tools/src/app/breaking/check.js`
+      `node "${rootDir}/.lyttle_tools/src/app/breaking/check.js"`
     );
     if (!breakingCheck) {
       console.log(

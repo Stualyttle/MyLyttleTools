@@ -4,7 +4,7 @@ ___
 
 ## MacOS/Linux:
 
-## `curl -sSL https://install-git.lyttle.it/experimental.sh | bash > /dev/null && npm -s --prefix .lyttle_tools start`
+## `curl -sSL https://install-git.lyttle.it/sh | bash > /dev/null && npm -s --prefix .lyttle_tools start`
 
 ___
 
