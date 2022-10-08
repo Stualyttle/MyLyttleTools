@@ -81,12 +81,12 @@ fs.readFile(
             (err) => {
               if (err)
                 throw new Error("Version import to .git/hooks failed!" + err);
+              if (!isWin)
+                runCommand(
+                  `chmod ug+x "${rootDir}/.git/hooks/*"`
+                );
             }
           );
-          if (!isWin)
-            runCommand(
-              `chmod ug+x "${rootDir}/.git/hooks/*"`
-            );
         }
       } else if (cloudVersion < appVersion) {
         console.log(
