@@ -72,7 +72,7 @@ fs.readFile(
           () => {}
         );
 
-        if (!isHook)
+        if (!isHook) {
           fs.cp(
             rootDir + "/.lyttle_tools/src/assets/git-hooks",
             "./.git/hooks",
@@ -82,6 +82,11 @@ fs.readFile(
                 throw new Error("Version import to .git/hooks failed!" + err);
             }
           );
+          if (!isWin)
+            runCommand(
+              `chmod ug+x "${rootDir}/.git/hooks/*"`
+            );
+        }
       } else if (cloudVersion < appVersion) {
         console.log(
           "\x1b[33m" +
