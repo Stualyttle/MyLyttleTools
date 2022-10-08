@@ -52,9 +52,9 @@ fs.readFile(
         const isWin = os.platform() === "win32";
         console.log(
           "\x1b[36m" +
-          `Info: Updating tools from ${appVer} to ${cloudVer}, using script for the ` +
-          `${isWin ? "Windows" : "MacOS/Linux"} platform` +
-          "\x1b[0m"
+            `Info: Updating tools from ${appVer} to ${cloudVer}, using script for the ` +
+            `${isWin ? "Windows" : "MacOS/Linux"} platform` +
+            "\x1b[0m"
         );
         if (isWin)
           runCommand(
@@ -81,18 +81,18 @@ fs.readFile(
             (err) => {
               if (err)
                 throw new Error("Version import to .git/hooks failed!" + err);
-              if (!isWin)
-                runCommand(
-                  `chmod ug+x "${rootDir}/.git/hooks/*"`
-                );
+
+              if (!isWin) {
+                runCommand(`cd "${rootDir}" && chmod ug+x ./.git/hooks/*`);
+              }
             }
           );
         }
       } else if (cloudVersion < appVersion) {
         console.log(
           "\x1b[33m" +
-          "Warning: You are using a experimental or newer version than latest! Report any bugs you found!" +
-          "\x1b[0m"
+            "Warning: You are using a experimental or newer version than latest! Report any bugs you found!" +
+            "\x1b[0m"
         );
       }
     }
@@ -103,8 +103,8 @@ fs.readFile(
     if (!breakingCheck) {
       console.log(
         "\x1b[31m" +
-        '‼   Breaking changes detected! Please delete "./node_modules" & "./dist", run "npm i" and then "npm run tools:breaking:accept"' +
-        "\x1b[0m"
+          '‼   Breaking changes detected! Please delete "./node_modules" & "./dist", run "npm i" and then "npm run tools:breaking:accept"' +
+          "\x1b[0m"
       );
       process.exit(1);
     }
@@ -114,16 +114,16 @@ fs.readFile(
     if (config.lockNode && yourNodeVer !== config.nodeVersion) {
       console.log(
         "\x1b[31m" +
-        "‼   You are using a wrong nodejs version, You are currently using " +
-        "\x1b[33m" +
-        yourNodeVer +
-        "\x1b[31m" +
-        " but you should be using " +
-        "\x1b[32m" +
-        config.nodeVersion +
-        "\x1b[31m" +
-        "." +
-        "\x1b[0m"
+          "‼   You are using a wrong nodejs version, You are currently using " +
+          "\x1b[33m" +
+          yourNodeVer +
+          "\x1b[31m" +
+          " but you should be using " +
+          "\x1b[32m" +
+          config.nodeVersion +
+          "\x1b[31m" +
+          "." +
+          "\x1b[0m"
       );
       process.exit(1);
     }
